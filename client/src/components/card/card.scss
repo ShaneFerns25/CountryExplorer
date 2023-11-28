@@ -6,3 +6,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.card2{
+    background-color: green;
+    width: 400px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+
+    img{
+        margin-top: 20px;
+    }
+}

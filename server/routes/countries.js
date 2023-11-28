@@ -3,10 +3,9 @@ import axios from "axios";
 
 const router = express.Router();
 
-const country = 'India';
-
-router.get('/', async (req,res)=>{
+router.get('/:country', async (req,res)=>{
     try {
+        const country = req.params.country;
         // Retreiving important info related to the country.
         const response = await axios.get(`https://restcountries.com/v3.1/name/${country}?fullText=true`);
 
@@ -14,7 +13,13 @@ router.get('/', async (req,res)=>{
 
         // console.log(common,official, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, png, alt, capitalInfo);
 
-        let borderCountriesList=[];
+        let otherNames=altSpellings.join(" or ");
+        let capitalLatLng=capitalInfo.latlng.join(",");
+        let latLng=latlng.join(",");
+        let countrysContinents="";
+        continents.length>1?countrysContinents+=`continents of ${continents.toString()}`:countrysContinents+=`continent of ${continents[0]}`;
+        
+        let borderCountries="";
 
         if (borders){
             const borderCountriesCodes = borders.toString();
@@ -25,13 +30,18 @@ router.get('/', async (req,res)=>{
             for (const borderCountry of response2.data){
                 const {name: {common: country}} = borderCountry;
 
-                borderCountriesList.push(country)
+                if (Object.keys(response2.data).length-1==borderCountry){
+                    borderCountries+="and"+country;
+                }
+                else{
+                    borderCountries+=country+",";
+                }
             };
         }
 
-        const info = {common, official, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borderCountriesList, area, population, timezones, continents, png, alt, capitalInfo};
+        const info = {common, official, independent, currencies, capital, otherNames, region, subregion, languages, latLng, landlocked, borderCountries, area, population, timezones, countrysContinents, png, alt, capitalLatLng};
 
-        console.log(info);
+        // console.log(info);
         res.status(200).json(info);
     } catch (err) {
         res.status(500).json(err);

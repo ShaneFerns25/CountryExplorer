@@ -1,6 +1,6 @@
-const TextField = ({type}) =>{
+const TextField = ({type,id,name}) =>{
     return(
-        <input type={type} id="country" name="country"/>
+        <input type={type} id={id} name={name}/>
     );
 };
 
