@@ -1,36 +1,36 @@
-import { useState } from 'react';
 import Form from '../form/Form';
 import './card.scss';
 
-const Card = ({displayInfo, setCountryInfo, countryInfo, countryDetails, setCountryDetails}) =>{
+const Card = ({displayInfo, setCountryInfo, countryInfo, countryDetails, setCountryDetails, imageHidden, setImageHidden}) =>{
     let info="";
 
     if(displayInfo==="no"){
         return(
             <div className='card'>
-                <Form sendInfo={(value) => setCountryInfo((prevState) => ({ ...prevState, info: value }))}/>
+                <Form sendInfo={(value) => setCountryInfo(value)}/>
             </div>
         );
     }
     else{
+        console.log(countryInfo);
+        if(Object.keys(countryInfo).length>0){
+            info+=`Commonaly called ${countryInfo.common} and officialy known as ${countryInfo.official}. It is also known by other names such as ${countryInfo.otherNames}. ${countryInfo.common} covers an area of ${countryInfo.area} sq. km and has a population of ${countryInfo.population}. ${countryInfo.capital[0]} is the capital of ${countryInfo.common} and it is located at a latitude and longitude of (${countryInfo.capitalLatLng}).${countryInfo.countryIndependent}`;
 
-        if(countryInfo.info!=="info"){
-            info+=`Commonaly called ${countryInfo.info.common} and officialy known as ${countryInfo.info.official}. It is also known by other names such as ${countryInfo.info.otherNames}. ${countryInfo.info.common} covers an area of ${countryInfo.info.area} sq. km and has a population of ${countryInfo.info.population}. ${countryInfo.info.capital[0]} is the capital of ${countryInfo.info.common} and it is located at a latitude and longitude of (${countryInfo.info.capitalLatLng}).${countryInfo.info.countryIndependent}`;
-
-            if(countryInfo.info.borderCountries){
-                info+=`It is surrounded by ${countryInfo.info.borderCountries}. `
+            if(countryInfo.borderCountries){
+                info+=`It is surrounded by ${countryInfo.borderCountries}. `
             }
             
-            info+=`${countryInfo.info.countrysCurrencies}${countryInfo.info.countryLandlocked}${countryInfo.info.common} is part of the ${countryInfo.info.countrysContinents}. It is located at a latitude and longitude of (${countryInfo.info.latLng}), belonging to the region of ${countryInfo.info.region} and the subregion of ${countryInfo.info.subregion}.${countryInfo.info.countrysLanguages} ${countryInfo.info.countrysTimezones}`
+            info+=`${countryInfo.countrysCurrencies}${countryInfo.countryLandlocked}${countryInfo.common} is part of the ${countryInfo.countrysContinents}. It is located at a latitude and longitude of (${countryInfo.latLng}), belonging to the region of ${countryInfo.region} and the subregion of ${countryInfo.subregion}.${countryInfo.countrysLanguages} ${countryInfo.countrysTimezones}`
 
             console.log(info);
+            setImageHidden(false);
             setCountryDetails(info);
         }
         return(
             <div className='card2'>
-                <img width="200px" src={countryInfo.info?.png} alt={countryInfo.info?.alt}/>
+                <img hidden={imageHidden} width="200px" src={countryInfo?.png} alt={countryInfo?.alt}/>
                 <br/>
-                <p>{countryDetails}</p> {/*here is updating*/}
+                <p>{countryDetails}</p>
             </div>
         );
     }

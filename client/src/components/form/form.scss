@@ -1,0 +1,86 @@
+.form{
+    text-align: center;
+
+    & > *{
+        margin: 10px;
+        font-size: xx-large;
+    }
+
+    span{
+        font-weight: bolder;
+    }
+
+    a{
+        position: relative;
+        display: block;
+        padding: 10px 10px;
+        border: 2px solid #00aeff;
+        text-transform: uppercase;
+        font-size: 18px;
+        color: #00aeff;
+        text-decoration: none;
+        overflow: hidden;
+        background-color: #fff;
+        width: 160px;
+        border-radius: 30px;
+        left: 26%;
+        cursor: pointer;
+
+        input{
+            position: relative;
+            z-index: 1;
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            transition: all .9s ease-in-out;
+            font-weight: bold;
+        }
+
+        &:hover input{
+            color: #fff;
+        }
+
+        .wave{
+            position: absolute;
+            top: calc(100% + 22px);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00aeff;
+            transition: all .9s ease-in-out;
+
+            &::before{
+                content: '';
+                position: absolute;
+                top: -22px;
+                left: 0;
+                width: 100%;
+                height: 22px;
+                background: url("https://firebasestorage.googleapis.com/v0/b/countryexplorer-b240f.appspot.com/o/wave.png?alt=media&token=6d292a0c-0aed-4cee-99e4-7d40069c38a4");
+                animation: animate 0.5s linear infinite;
+            }
+            @keyframes animate {
+                0%{
+                    background-position-x: 0;
+                }
+                25%{
+                    background-position-x: 29px;
+                }
+                50%{
+                    background-position-x: 59px;
+                }
+                100%{
+                    background-position-x: 118px;
+                }
+            }
+        }
+
+        &:hover .wave{
+            top: 0;
+        }
+    }
+}

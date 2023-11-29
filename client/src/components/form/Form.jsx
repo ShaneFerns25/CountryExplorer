@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TextField from '../textField/TextField';
 import axios from 'axios';
+import './form.scss';
 
 const Form = ({sendInfo}) =>{
     const [isHidden, setIsHidden] = useState(true);
@@ -18,9 +19,16 @@ const Form = ({sendInfo}) =>{
 
     function getCountryDetails(event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const country = formData.get("country");
-        
+        let country;
+
+        if(event.type==="click"){
+            country = document.getElementById("country").value;
+        }
+        else{
+            const formData = new FormData(event.target);
+            country = formData.get("country");
+        }
+
         if(country){
             if(!isHidden){
                 setIsHidden(prevValue=>{
@@ -37,13 +45,18 @@ const Form = ({sendInfo}) =>{
     }
 
     return(
-        <form onSubmit={getCountryDetails}>
-            <h3>Enter the name of a country</h3>
+        <form id='form' className='form' onSubmit={getCountryDetails}>
+            <span>Enter the name of a country</span>
+            <br/>
             <TextField type="text" id="country" name="country"/>
             <br/>
             <span hidden={isHidden}>Please enter a country</span>
             <br hidden={isHidden}/>
-            <TextField type="submit" id="submit" name="submit"/>
+            
+            <a onClick={getCountryDetails}>
+                <TextField type="submit" id="submitBtn" name="submitBtn"/>
+                <div className='wave'></div>
+            </a>
         </form>
     );
 };
