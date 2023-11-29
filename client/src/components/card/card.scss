@@ -9,13 +9,23 @@
 
 .card2{
     background-color: green;
-    width: 400px;
+    width: 600px;
     height: 450px;
-    display: flex;
+    display: inline-flexbox;
     justify-content: center;
-    align-items: start;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
 
     img{
-        margin-top: 20px;
+        margin-top: 10px;
+        position: relative;
+        left:200px
+    }
+
+    p{
+        white-space: pre-line;
+        text-align: justify;
+        font-weight: bold;
     }
 }

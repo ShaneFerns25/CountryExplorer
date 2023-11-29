@@ -12,7 +12,7 @@ const Form = ({sendInfo}) =>{
             console.log(res.data);
             sendInfo(res.data);
         } catch (err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     };
 

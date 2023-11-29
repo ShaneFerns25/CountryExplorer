@@ -16,6 +16,7 @@ router.get('/:country', async (req,res)=>{
         let otherNames=altSpellings.join(" or ");
         let capitalLatLng=capitalInfo.latlng.join(",");
         let latLng=latlng.join(",");
+
         let countrysContinents="";
         continents.length>1?countrysContinents+=`continents of ${continents.toString()}`:countrysContinents+=`continent of ${continents[0]}`;
         
@@ -23,23 +24,72 @@ router.get('/:country', async (req,res)=>{
 
         if (borders){
             const borderCountriesCodes = borders.toString();
+            let cnt=0;
             
             // Retreiving names of countries surrounding the country in question, from their country codes.
             const response2 = await axios.get(`https://restcountries.com/v3.1/alpha?codes=${borderCountriesCodes}`);
 
-            for (const borderCountry of response2.data){
-                const {name: {common: country}} = borderCountry;
+            if(Object.keys(response2.data).length>1){
+                for (const borderCountry of response2.data){
+                    const {name: {common: country}} = borderCountry;
 
-                if (Object.keys(response2.data).length-1==borderCountry){
-                    borderCountries+="and"+country;
-                }
-                else{
-                    borderCountries+=country+",";
-                }
-            };
+                    cnt+=1;
+
+                    if (Object.keys(response2.data).length==cnt){
+                        borderCountries+="and "+country;
+                    }
+                    else{
+                        borderCountries+=country+", ";
+                    }
+                };
+            }
+            else{
+                borderCountries+=response2.data[0].name.common;
+            }
         }
 
-        const info = {common, official, independent, currencies, capital, otherNames, region, subregion, languages, latLng, landlocked, borderCountries, area, population, timezones, countrysContinents, png, alt, capitalLatLng};
+        let countrysCurrenciesCode=[];
+        let countrysCurrenciesName=[];
+        let countrysCurrenciesSymbol=[];
+        let countrysCurrencies="";
+
+        for (const currency in currencies){
+            const {name,symbol} = currencies[currency];
+            
+            countrysCurrenciesCode.push(currency);
+            countrysCurrenciesName.push(name);
+            countrysCurrenciesSymbol.push(symbol);
+        }
+
+        if(Object.keys(currencies).length>1){
+            countrysCurrencies+=`${countrysCurrenciesCode.toString()} are the currencies of ${common}. Respectively they are known as ${countrysCurrenciesName.toString()} and their symbols are ${countrysCurrenciesSymbol.toString()}.`
+        }
+        else{
+            countrysCurrencies+=`${countrysCurrenciesCode.toString()} is the currency of ${common}. It is known as ${countrysCurrenciesName.toString()} and its symbol is ${countrysCurrenciesSymbol.toString()}.`
+        }
+
+        let languagesList=[];
+        let countrysLanguages="";
+
+        for (const language in languages){
+           languagesList.push(languages[language]);
+        }
+
+        (Object.keys(languages).length>1)?countrysLanguages+=` ${languagesList.join(", ")} are the languages spoken in ${common}.`:countrysLanguages+=` ${languagesList[0]} is the language spoken in ${common}.`;
+
+        let countrysTimezones=timezones.join(", ");
+
+        (timezones.length>1)?countrysTimezones+=` are the timezones of ${common}.`:countrysTimezones+=` is the timezone of ${common}.`;
+
+        let countryIndependent="";
+
+        (independent)?countryIndependent+=` It is an independent country.\n\n`: countryIndependent+=` It is not an independent country.\n\n`;
+
+        let countryLandlocked="";
+
+        (landlocked)?countryLandlocked+=` It is a landlocked country.`: countryLandlocked+=` It is not a landlocked country.`;
+
+        const info = {common, official, countryIndependent, countrysCurrencies, capital, otherNames, region, subregion, countrysLanguages, latLng, countryLandlocked, borderCountries, area, population, countrysTimezones, countrysContinents, png, alt, capitalLatLng};
 
         // console.log(info);
         res.status(200).json(info);
