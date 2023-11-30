@@ -2,7 +2,7 @@ import { useState,useEffect } from 'react';
 import Form from '../form/Form';
 import './card.scss';
 
-const Card = ({displayInfo, setCountryInfo, countryInfo, flipCard, handleFlip, setIsBackButtonHidden}) =>{
+const Card = ({displayInfo, setCountryInfo, countryInfo, flipCard, handleFlip, setIsBackButtonHidden, isCleared, setIsCleared}) =>{
     // console.log(countryInfo);
     const [imageHidden,setImageHidden]=useState(true);
     const [countryDetails,setCountryDetails]=useState("");
@@ -32,7 +32,7 @@ const Card = ({displayInfo, setCountryInfo, countryInfo, flipCard, handleFlip, s
     if(displayInfo==="no"){
         return(
             <div className='card'>
-                <Form sendInfo={(value) => setCountryInfo(value)}/>
+                <Form sendInfo={(value) => setCountryInfo(value)} isCleared={isCleared} setIsCleared={setIsCleared}/>
             </div>
         );
     }

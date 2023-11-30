@@ -1,8 +1,9 @@
 import './backButton.scss';
 
-const BackButton = ({isBackButtonHidden, setIsBackButtonHidden, flipCard, handleFlip})=>{
+const BackButton = ({isBackButtonHidden, setIsBackButtonHidden, flipCard, handleFlip, setIsCleared})=>{
 
     const handleFlipCard =()=>{
+        setIsCleared(true);
         setIsBackButtonHidden(!isBackButtonHidden);
         handleFlip(!flipCard);
     }

@@ -3,7 +3,7 @@ import TextField from '../textField/TextField';
 import axios from 'axios';
 import './form.scss';
 
-const Form = ({sendInfo}) =>{
+const Form = ({sendInfo, isCleared, setIsCleared}) =>{
     const [isHidden, setIsHidden] = useState(true);
 
     const getCountryInfo = async (country) => {
@@ -47,13 +47,13 @@ const Form = ({sendInfo}) =>{
         <form id='form' className='form' onSubmit={getCountryDetails}>
             <span id='heading'>Enter the name of a country</span>
             <br/>
-            <TextField type="text" id="country" name="country"/>
+            <TextField type="text" id="country" name="country" isCleared={isCleared} setIsCleared={setIsCleared}/>
             <br/>
             <span id='error' hidden={isHidden}>Please enter a common or official name</span>
             <br hidden={isHidden}/>
             
             <button onClick={getCountryDetails}>
-                <TextField type="submit" id="submitBtn" name="submitBtn"/>
+                <TextField type="submit" id="submitBtn" name="submitBtn" isCleared={isCleared} setIsCleared={setIsCleared}/>
                 <div className='wave'></div>
             </button>
         </form>
