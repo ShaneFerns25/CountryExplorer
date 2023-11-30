@@ -13,7 +13,10 @@ const Form = ({sendInfo}) =>{
             console.log(res.data);
             sendInfo(res.data);
         } catch (err) {
-            console.log(err.response.data);
+            console.log(err.response.data,err.response.data.status);
+            if(err.response.data.status==404){
+                setIsHidden(false);
+            }
         }
     };
 
@@ -31,26 +34,22 @@ const Form = ({sendInfo}) =>{
 
         if(country){
             if(!isHidden){
-                setIsHidden(prevValue=>{
-                    return !prevValue;
-                });
+                setIsHidden(!isHidden);
             }
             getCountryInfo(country);
         }
         else{
-            setIsHidden(prevValue=>{
-                return !prevValue;
-            });
+            setIsHidden(false);
         }
     }
 
     return(
         <form id='form' className='form' onSubmit={getCountryDetails}>
-            <span>Enter the name of a country</span>
+            <span id='heading'>Enter the name of a country</span>
             <br/>
             <TextField type="text" id="country" name="country"/>
             <br/>
-            <span hidden={isHidden}>Please enter a country</span>
+            <span id='error' hidden={isHidden}>Please enter a common or official name</span>
             <br hidden={isHidden}/>
             
             <a onClick={getCountryDetails}>

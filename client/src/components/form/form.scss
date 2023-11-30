@@ -6,8 +6,21 @@
         font-size: xx-large;
     }
 
-    span{
+    #heading{
         font-weight: bolder;
+    }
+
+    #error{
+        font-size: 17px;
+        color: red;
+        font-weight: bolder;
+        background-color: white;
+        padding: 0 5px;
+        border-style: solid;
+        border-color: red;
+        border-width: 0 0 0 thick;
+        position: relative;
+        z-index: 4;
     }
 
     a{
@@ -23,7 +36,7 @@
         background-color: #fff;
         width: 160px;
         border-radius: 30px;
-        left: 26%;
+        left: 27%;
         cursor: pointer;
 
         input{
