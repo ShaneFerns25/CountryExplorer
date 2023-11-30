@@ -14,7 +14,7 @@ const Form = ({sendInfo}) =>{
             sendInfo(res.data);
         } catch (err) {
             console.log(err.response.data,err.response.data.status);
-            if(err.response.data.status==404){
+            if(err.response.data.status===404){
                 setIsHidden(false);
             }
         }
@@ -41,7 +41,7 @@ const Form = ({sendInfo}) =>{
         else{
             setIsHidden(false);
         }
-    }
+    };
 
     return(
         <form id='form' className='form' onSubmit={getCountryDetails}>
@@ -52,10 +52,10 @@ const Form = ({sendInfo}) =>{
             <span id='error' hidden={isHidden}>Please enter a common or official name</span>
             <br hidden={isHidden}/>
             
-            <a onClick={getCountryDetails}>
+            <button onClick={getCountryDetails}>
                 <TextField type="submit" id="submitBtn" name="submitBtn"/>
                 <div className='wave'></div>
-            </a>
+            </button>
         </form>
     );
 };

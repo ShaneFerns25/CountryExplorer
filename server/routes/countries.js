@@ -11,7 +11,7 @@ router.get('/:country', async (req,res)=>{
 
         const {name: {common,official}, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, flags: {png,alt}, capitalInfo} = response.data[0];
 
-        // console.log(common,official, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, png, alt, capitalInfo);
+        // console.log(common, official, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, png, alt, capitalInfo);
 
         let otherNames=altSpellings.join(" or ");
         let capitalLatLng=capitalInfo.latlng.join(",");
@@ -62,10 +62,10 @@ router.get('/:country', async (req,res)=>{
         }
 
         if(Object.keys(currencies).length>1){
-            countrysCurrencies+=`${countrysCurrenciesCode.toString()} are the currencies of ${common}. Respectively they are known as ${countrysCurrenciesName.toString()} and their symbols are ${countrysCurrenciesSymbol.toString()}.`
+            countrysCurrencies+=`${countrysCurrenciesCode.join(", ")} are the currencies of ${common}, respectively they are known as ${countrysCurrenciesName.join(", ")} and their symbols are ${countrysCurrenciesSymbol.join(", ")}.`;
         }
         else{
-            countrysCurrencies+=`${countrysCurrenciesCode.toString()} is the currency of ${common}. It is known as ${countrysCurrenciesName.toString()} and its symbol is ${countrysCurrenciesSymbol.toString()}.`
+            countrysCurrencies+=`${countrysCurrenciesCode.toString()} is the currency of ${common}. It is known as ${countrysCurrenciesName.toString()} and its symbol is ${countrysCurrenciesSymbol.toString()}.`;
         }
 
         let languagesList=[];
@@ -83,7 +83,7 @@ router.get('/:country', async (req,res)=>{
 
         let countryIndependent="";
 
-        (independent)?countryIndependent+=` It is an independent country.\n\n`: countryIndependent+=` It is not an independent country.\n\n`;
+        (independent)?countryIndependent+=` ${common} is an independent country.\n\n`: countryIndependent+=` ${common} is not an independent country.\n\n`;
 
         let countryLandlocked="";
 
