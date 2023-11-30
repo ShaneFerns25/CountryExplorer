@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Card from '../../components/card/Card';
 import './home.scss';
 
 const Home = () =>{
     const [countryInfo,setCountryInfo] = useState({});
-    const [countryDetails,setCountryDetails]=useState("");
-    const [imageHidden,setImageHidden]=useState(true);
+    const [flipCard,setFlipCard]=useState(false);
     
     return(
         <div className='home'>
-            <Card displayInfo="no" setCountryInfo={setCountryInfo} countryInfo={countryInfo}/>
-            {/* <span style={{marginRight: '10px'}}>b</span> */}
-            <Card displayInfo="yes" imageHidden={imageHidden} setImageHidden={setImageHidden} countryDetails={countryDetails} setCountryDetails={setCountryDetails} setCountryInfo={setCountryInfo} countryInfo={countryInfo}/>
+            <div id="flipCard" className={`flipCard ${flipCard? 'flip':''}`}>
+                <Card displayInfo="no" flipCard={flipCard} handleFlip={(value)=>setFlipCard(value)} setCountryInfo={setCountryInfo} countryInfo={countryInfo}/>
+                <Card displayInfo="yes" flipCard={flipCard} handleFlip={(value)=>setFlipCard(value)} setCountryInfo={setCountryInfo} countryInfo={countryInfo}/>
+            </div>
         </div>
     );
 };

@@ -7,4 +7,18 @@
     background-image: url("https://firebasestorage.googleapis.com/v0/b/countryexplorer-b240f.appspot.com/o/peakpx.jpg?alt=media&token=c93572ef-31be-4896-86f9-6b17fcf83bd5");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
+
+    .flipCard{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 600px;
+        height: 460px;
+        transform-style: preserve-3d;
+        transition: all 0.8s ease;
+    }
+}
+
+.flip{
+    transform: rotateY(180deg);
 }
