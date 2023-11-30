@@ -1,5 +1,6 @@
-import express from 'express';
+import express from "express";
 import axios from "axios";
+import numeral from "numeral";
 
 const router = express.Router();
 
@@ -12,6 +13,9 @@ router.get('/:country', async (req,res)=>{
         const {name: {common,official}, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, flags: {png,alt}, capitalInfo} = response.data[0];
 
         // console.log(common, official, independent, currencies, capital, altSpellings, region, subregion, languages, latlng, landlocked, borders, area, population, timezones, continents, png, alt, capitalInfo);
+
+        const formattedArea = numeral(area).format("0,0");
+        const formattedPopulation = numeral(population).format("0,0");;
 
         let otherNames=altSpellings.join(" or ");
         let capitalLatLng=capitalInfo.latlng.join(",");
@@ -42,9 +46,11 @@ router.get('/:country', async (req,res)=>{
                         borderCountries+=country+", ";
                     }
                 };
+                borderCountries=`It shares borders with ${borderCountries}. `
             }
             else{
                 borderCountries+=response2.data[0].name.common;
+                borderCountries=`It shares a border with ${borderCountries}. `
             }
         }
 
@@ -89,7 +95,7 @@ router.get('/:country', async (req,res)=>{
 
         (landlocked)?countryLandlocked+=` It is a landlocked country.`: countryLandlocked+=` It is not a landlocked country.`;
 
-        const info = {common, official, countryIndependent, countrysCurrencies, capital, otherNames, region, subregion, countrysLanguages, latLng, countryLandlocked, borderCountries, area, population, countrysTimezones, countrysContinents, png, alt, capitalLatLng};
+        const info = {common, official, countryIndependent, countrysCurrencies, capital, otherNames, region, subregion, countrysLanguages, latLng, countryLandlocked, borderCountries, formattedArea, formattedPopulation, countrysTimezones, countrysContinents, png, alt, capitalLatLng};
 
         // console.log(info);
         res.status(200).json(info);

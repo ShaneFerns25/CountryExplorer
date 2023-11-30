@@ -11,10 +11,10 @@ const Card = ({displayInfo, setCountryInfo, countryInfo, flipCard, handleFlip, s
         let info="";
         
         if(Object.keys(countryInfo).length>0){
-            info+=`Commonly called ${countryInfo.common} and officially known as ${countryInfo.official}. It is also known by other names such as ${countryInfo.otherNames}. ${countryInfo.common} covers an area of ${countryInfo.area} sq. km and has a population of ${countryInfo.population}. ${countryInfo.capital[0]} is the capital of ${countryInfo.common} and it is located at a latitude and longitude of (${countryInfo.capitalLatLng}).${countryInfo.countryIndependent}`;
+            info+=`Commonly called ${countryInfo.common} and officially known as ${countryInfo.official}. It is also known by other names such as ${countryInfo.otherNames}. ${countryInfo.common} covers an area of ${countryInfo.formattedArea} sq. km and has a population of ${countryInfo.formattedPopulation}. ${countryInfo.capital[0]} is the capital of ${countryInfo.common} and it is located at a latitude and longitude of (${countryInfo.capitalLatLng}).${countryInfo.countryIndependent}`;
 
             if(countryInfo.borderCountries){
-                info+=`It is surrounded by ${countryInfo.borderCountries}. `;
+                info+=`${countryInfo.borderCountries}`;
             }
             
             info+=`${countryInfo.countrysCurrencies}${countryInfo.countryLandlocked} ${countryInfo.common} is part of the ${countryInfo.countrysContinents}. It is located at a latitude and longitude of (${countryInfo.latLng}), belonging to the region of ${countryInfo.region} and the subregion of ${countryInfo.subregion}.${countryInfo.countrysLanguages} ${countryInfo.countrysTimezones}`;
