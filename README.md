@@ -26,6 +26,16 @@ in the url of your web browser.
 
 > This way the process can be repeated to search for information on any country.
 
+## Testing the application using Jest
+> To run the tests for the frontend, open a terminal in the client folder or open a terminal and navigate to the client folder using the cd command.
+
+> run 'npm t' or 'npm test' command in the terminal to run all the tests.
+
+## Testing the application using Cypress
+> To run the tests for the backend, open a terminal in the server folder or open a terminal and navigate to the server folder using the cd command.
+
+> run 'npm t' or 'npm test' command in the terminal to run all the tests.
+
 ## Documentation
 - [Node](https://nodejs.org/en/docs)
 - [React](https://react.dev/learn)
@@ -36,5 +46,7 @@ in the url of your web browser.
 - [Nodemon](https://github.com/remy/nodemon#nodemon)
 - [Numeral](http://numeraljs.com/)
 - [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- [Jest](https://jestjs.io/docs/getting-started)
+- [Cypress](https://docs.cypress.io/guides/overview/why-cypress)
 
 [LinkedIn Shane Fernandes](https://www.linkedin.com/in/shane-fernandes-330677212/)
