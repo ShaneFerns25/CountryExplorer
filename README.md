@@ -36,6 +36,9 @@ in the url of your web browser.
 
 > run 'npm t' or 'npm test' command in the terminal to run all the tests.
 
+> [!IMPORTANT]
+> It is necessary to have the server running to be able to run backend tests.
+
 ## Documentation
 - [Node](https://nodejs.org/en/docs)
 - [React](https://react.dev/learn)
