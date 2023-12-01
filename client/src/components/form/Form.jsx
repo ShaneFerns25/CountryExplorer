@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TextField from '../textField/TextField';
 import axios from 'axios';
 import './form.scss';
+const {REACT_APP_SERVER_API}=process.env;
 
 const Form = ({sendInfo, isCleared, setIsCleared}) =>{
     const [isHidden, setIsHidden] = useState(true);
@@ -9,7 +10,7 @@ const Form = ({sendInfo, isCleared, setIsCleared}) =>{
     const getCountryInfo = async (country) => {
         try {
             // console.log(country);
-            const res = await axios.get(`/countries/${country}`);
+            const res = await axios.get(`${REACT_APP_SERVER_API}/countries/${country}`);
             console.log(res.data);
             sendInfo(res.data);
         } catch (err) {

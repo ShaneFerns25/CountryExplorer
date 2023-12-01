@@ -3,8 +3,10 @@
 ## Setting up and starting the application:
 > After cloning the application or downloading it from Github, open the applications root directory in a source code editor and open two seperate terminals. In one terminal run 'cd client' command to go into the client directory and in the other terminal run 'cd server' command to go into the server directory.
 
-> In the terminal with the server directory, run 'cat > .env' to create a .env file to store environment variables or directy just create a new file under the server folder and name it .env . Enter: PORT=9000
-inside the file to store the PORT and save the file.
+> In both the terminals, run 'cat > .env' to create a .env file to store environment variables or directy just create a new file under the server folder and name it .env and do the same in the client folder. 
+
+- For the .env file in the server folder, Enter: PORT=9000 and save the file.
+- For the .env file in the client folder, Enter: REACT_APP_SERVER_API=http://localhost:9000/api and save the file.
 
 > Next run 'npm i' command inside both terminals, this will install all dependencies listed in the package.json files for both client and server.
 
@@ -33,5 +35,6 @@ in the url of your web browser.
 - [Express](https://expressjs.com/)
 - [Nodemon](https://github.com/remy/nodemon#nodemon)
 - [Numeral](http://numeraljs.com/)
+- [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 [LinkedIn Shane Fernandes](https://www.linkedin.com/in/shane-fernandes-330677212/)
