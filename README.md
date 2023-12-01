@@ -17,7 +17,7 @@ OR
 directly copy paste: http://localhost:3000/
 in the url of your web browser.
 
-## Using the application
+## Using the application:
 > Enter the common or official name of a country in the input field and click submit.
 
 > The card will then display information related to the country.
@@ -26,12 +26,12 @@ in the url of your web browser.
 
 > This way the process can be repeated to search for information on any country.
 
-## Testing the frontend using Jest
+## Testing the frontend using Jest:
 > To run the tests for the frontend, open a terminal in the client folder or open a terminal and navigate to the client folder using the cd command.
 
 > run 'npm t' or 'npm test' command in the terminal to run all the tests.
 
-## Testing the backend using Cypress
+## Testing the backend using Cypress:
 > To run the tests for the backend, open a terminal in the server folder or open a terminal and navigate to the server folder using the cd command.
 
 > run 'npm t' or 'npm test' command in the terminal to run all the tests.
