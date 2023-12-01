@@ -53,7 +53,7 @@ const Form = ({sendInfo, isCleared, setIsCleared}) =>{
             <span id='error' hidden={isHidden}>Please enter a common or official name</span>
             <br hidden={isHidden}/>
             
-            <button onClick={getCountryDetails}>
+            <button id='outerSubmitBtn' onClick={getCountryDetails}>
                 <TextField type="submit" id="submitBtn" name="submitBtn" isCleared={isCleared} setIsCleared={setIsCleared}/>
                 <div className='wave'></div>
             </button>
